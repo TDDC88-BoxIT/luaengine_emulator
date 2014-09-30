@@ -31,7 +31,7 @@ EmulatorWindow::EmulatorWindow(QWidget *parent) :
     lua_State* L = luaL_newstate();
     luaL_openlibs(L);
 
-    //lua_pushcfunction(L, l_surface_clear);
+    lua_pushcfunction(L, l_surface_clear);
     lua_setglobal(L, "surface:clear");
     luaL_dofile(L, "script.lua");
 
@@ -47,13 +47,13 @@ EmulatorWindow::EmulatorWindow(QWidget *parent) :
     lua_close(L);
 }
 
-/*
+
 static int l_surface_clear(lua_State *L)
 {
     double d = luaL_checknumber(L, 1);
     lua_pushnumber(L, sin(d)); // Push the result
     return 1;  // number of results
-}*/
+}
 
 void EmulatorWindow::keyPressEvent(QKeyEvent *keyEvent)
 {

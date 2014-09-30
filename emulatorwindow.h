@@ -26,7 +26,7 @@ class EmulatorWindow : public QDialog
 public:
     explicit EmulatorWindow(QWidget *parent = 0);
     ~EmulatorWindow();
-    //static int l_surface_clear(lua_State *L);
+    static int l_surface_clear(lua_State *L);
 
 protected:
     void keyPressEvent(QKeyEvent *keyEvent);

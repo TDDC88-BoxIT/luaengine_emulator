@@ -7,12 +7,12 @@
 #include <QGraphicsScene>
 #include <QGraphicsItem>
 #include <QGraphicsRectItem>
-#include <stbemulator.h>
+#include "stbemulator.h"
 
 extern "C" {
-# include "lua.h"
-# include "lauxlib.h"
-# include "lualib.h"
+# include "lua/include/lua.h"
+# include "lua/include/lauxlib.h"
+# include "lua/include/lualib.h"
 }
 
 namespace Ui {
@@ -26,7 +26,7 @@ class EmulatorWindow : public QDialog
 public:
     explicit EmulatorWindow(QWidget *parent = 0);
     ~EmulatorWindow();
-    static int l_surface_clear(lua_State *L);
+    //static int l_surface_clear(lua_State *L);
 
 protected:
     void keyPressEvent(QKeyEvent *keyEvent);

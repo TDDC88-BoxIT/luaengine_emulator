@@ -24,9 +24,9 @@ FORMS    += emulatorwindow.ui
 OTHER_FILES += \
     script.lua
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../../usr/lib/release/ -llua
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../../usr/lib/debug/ -llua
-else:unix: LIBS += -L$$PWD/../../../../usr/lib/ -llua
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/lua/ -llua52
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/lua/ -llua52d
+else:unix: LIBS += -L$$PWD/lua/ -llua52
 
-INCLUDEPATH += $$PWD/../../../../usr/include
-DEPENDPATH += $$PWD/../../../../usr/include
+INCLUDEPATH += $$PWD/lua
+DEPENDPATH += $$PWD/lua

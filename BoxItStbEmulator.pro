@@ -26,7 +26,11 @@ OTHER_FILES += \
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/lua/ -llua52
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/lua/ -llua52d
+else:macx: LIBS += -L$$PWD/lua_mac/ -llua52
 else:unix: LIBS += -L$$PWD/lua/ -llua
 
 INCLUDEPATH += $$PWD/lua
 DEPENDPATH += $$PWD/lua
+
+INCLUDEPATH += $$PWD/lua_mac
+DEPENDPATH += $$PWD/lua_mac

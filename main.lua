@@ -1,4 +1,6 @@
-require('surface')
+require('surface_class')
+gfx = require('gfx')
+sys = require('sys')
 
 ----------------------
 -- love2d functions --
@@ -60,11 +62,15 @@ function love.load()
   key_translation["d"] = "record_list"
   key_translation["f"] = "play_list"
   key_translation["u"] = "mute"
+  
+  
+  require('game.game')
 end
 
 
 function love.draw()
   --print('love.draw')
+  --love.graphics.draw(image)
   if first_run then
     if type(onStart) == "function" then
       print('Calling onStart')
@@ -72,10 +78,10 @@ function love.draw()
     end
     first_run = false
   end
-  --love.graphics.setColor(0, 255, 0, 255)
-  love.graphics.draw(image)
-  love.graphics.circle( "fill", 300, 300, 50, 100 )
-  love.graphics.print("Hello World!", 400, 300)
+  
+  if gfx.auto_update then
+    gfx.graphics.draw(gfx.screen)
+  end
 end
 
 
@@ -99,6 +105,73 @@ function love.keyreleased(key)
   end
 end
 
---function onStart()
---  print("Start")
---end
+function love.run()
+
+  if love.math then
+      love.math.setRandomSeed(os.time())
+  end
+
+  if love.event then
+      love.event.pump()
+  end
+
+  if love.load then love.load(arg) end
+
+  -- We don't want the first frame's dt to include time taken by love.load.
+  if love.timer then love.timer.step() end
+
+  local dt = 0
+
+  -- Main loop time.
+  while true do
+    -- Process events.
+    if love.event then
+      love.event.pump()
+      for e,a,b,c,d in love.event.poll() do
+        if e == "quit" then
+          if not love.quit or not love.quit() then
+            if love.audio then
+              love.audio.stop()
+            end
+            return
+          end
+        end
+        love.handlers[e](a,b,c,d)
+      end
+    end
+
+    for i,t in ipairs(sys.timers) do
+      if t.running then
+        if t.time_since >= t.interval_millisec then
+          if type(t.callback) == "function" then
+            t.callback()
+          elseif type(t.callback) == "string" then
+            loadstring(t.callback .. "()")
+          end
+          t.time_since = 0
+        else
+          t.time_since = t.time_since + (dt * 1000)
+        end
+      end
+    end
+
+    -- Update dt, as we'll be passing it to update
+    if love.timer then
+      love.timer.step()
+      dt = love.timer.getDelta()
+    end
+
+    -- Call update and draw
+    if love.update then love.update(dt) end -- will pass 0 if love.timer is disabled
+
+    if love.window and love.graphics and love.window.isCreated() then
+      love.graphics.clear()
+      love.graphics.origin()
+      if love.draw then love.draw() end
+      love.graphics.present()
+    end
+
+    if love.timer then love.timer.sleep(0.001) end
+  end
+
+end

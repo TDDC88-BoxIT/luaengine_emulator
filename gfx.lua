@@ -62,9 +62,9 @@ function gfx.get_memory_use()
 end
 
 
-gfx.screen = surface_class(love.graphics.getDimensions())
-screen = gfx.screen
-gfx.buffer_screen = gfx.screen
+screen = surface_class(love.graphics.getDimensions())
+--screen = gfx.screen
+--buffer_screen = gfx.screen
 
 function gfx.get_memory_limit()
   return 1000000 -- TODO
@@ -72,9 +72,9 @@ end
 
 
 function gfx.update()
-  print('Called draw')
-  love.graphics.draw(gfx.screen.canvas)
-  --gfx.buffer_screen = gfx.screen
+  --print('Called draw')
+  --love.graphics.draw(gfx.screen.canvas)
+  buffer_screen = screen
 end
 
 

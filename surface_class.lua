@@ -27,7 +27,7 @@ function check_color(color)
       end
 
       if color.alpha == nil then
-        tmp_color[4] = 0
+        tmp_color[4] = 255
       else
         tmp_color[4] = color.alpha
       end
@@ -56,7 +56,7 @@ function check_color(color)
       end
 
       if color.a == nil then
-        tmp_color[4] = 0
+        tmp_color[4] = 255
       else
         tmp_color[4] = color.a
       end
@@ -75,7 +75,7 @@ function check_color(color)
       end
     end
   else
-    tmp_color = {0, 0, 0, 0}
+    tmp_color = {0, 0, 0, 255}
   end
   
   return tmp_color

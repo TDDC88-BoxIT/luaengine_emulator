@@ -64,7 +64,10 @@ function love.load()
   key_translation["u"] = "mute"
   
   
+  --require('game.game')
+  buffer_screen = screen
   require('game.game')
+  --require('test')
 end
 
 
@@ -80,11 +83,13 @@ function love.draw()
   end
   
   if gfx.auto_update then
-    print('Auto draw')
-    love.graphics.draw(gfx.screen)
+    --print('Auto draw')
+    buffer_screen = screen
+    
   --else
   --  love.graphics.draw(gfx.buffer_screen)
   end
+  love.graphics.draw(buffer_screen.canvas)
 end
 
 
@@ -156,6 +161,7 @@ function love.run()
         else
           t.time_since = t.time_since + (dt * 1000)
         end
+        sys.timers[i] = t
       end
     end
 

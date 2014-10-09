@@ -27,7 +27,7 @@ dir = 'game/'
 
 lanes = 8
 status_height = 80
-lane_height = math.floor((gfx.screen:get_height() - status_height) / lanes)
+lane_height = math.floor((screen:get_height() - status_height) / lanes)
 number_width = 51
 number_height = 75
 
@@ -300,7 +300,7 @@ end
 ----------------------------------------------------------------------
 
 function update_cb(timer)
-  print('Timer ')
+  print("update_cb")
   now = sys.time()
   last_time = last_time or 0
   update_state(now - last_time)
@@ -322,7 +322,7 @@ function onKey(key, state)
       -- screen:copyfrom(promotion, nil, {x=320,
       --                                 y=screen:get_height() - promotion:get_height()})
       -- gfx.update()
-      start()
+      onStart()
       return
    end
 

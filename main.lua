@@ -80,7 +80,10 @@ function love.draw()
   end
   
   if gfx.auto_update then
-    gfx.graphics.draw(gfx.screen)
+    print('Auto draw')
+    love.graphics.draw(gfx.screen)
+  --else
+  --  love.graphics.draw(gfx.buffer_screen)
   end
 end
 
@@ -146,7 +149,8 @@ function love.run()
           if type(t.callback) == "function" then
             t.callback()
           elseif type(t.callback) == "string" then
-            loadstring(t.callback .. "()")
+            cb_function = loadstring(t.callback .. "()")
+            cb_function(t)
           end
           t.time_since = 0
         else

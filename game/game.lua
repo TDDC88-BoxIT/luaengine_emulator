@@ -300,15 +300,16 @@ end
 ----------------------------------------------------------------------
 
 function update_cb(timer)
-   now = sys.time()
-   last_time = last_time or 0
-   update_state(now - last_time)
-   last_time = now
-   if lives > 0 then
-      draw_screen()
-   else
-      game_over()
-   end
+  print('Timer ')
+  now = sys.time()
+  last_time = last_time or 0
+  update_state(now - last_time)
+  last_time = now
+  if lives > 0 then
+    draw_screen()
+  else
+    game_over()
+  end
 end
 
 function onKey(key, state)

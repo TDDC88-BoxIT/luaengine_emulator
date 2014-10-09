@@ -64,6 +64,7 @@ end
 
 gfx.screen = surface_class(love.graphics.getDimensions())
 screen = gfx.screen
+gfx.buffer_screen = gfx.screen
 
 function gfx.get_memory_limit()
   return 1000000 -- TODO
@@ -71,7 +72,9 @@ end
 
 
 function gfx.update()
+  print('Called draw')
   love.graphics.draw(gfx.screen.canvas)
+  --gfx.buffer_screen = gfx.screen
 end
 
 
@@ -95,6 +98,5 @@ end
 ----------------------
 
 gfx.auto_update = false
-
 
 return gfx

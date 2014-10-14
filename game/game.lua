@@ -300,7 +300,6 @@ end
 ----------------------------------------------------------------------
 
 function update_cb(timer)
-  print("update_cb")
   now = sys.time()
   last_time = last_time or 0
   update_state(now - last_time)

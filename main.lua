@@ -64,10 +64,10 @@ function love.load()
   key_translation["u"] = "mute"
   
   
-  --require('game.game')
-  buffer_screen = screen
   require('game.game')
-  --require('test')
+  buffer_screen = screen
+  --require('scrum1.main')
+  --require('gameproject.main')
 end
 
 

@@ -1,6 +1,5 @@
 require('class')
 
-
 timer_class = class(function (self, interval_millisec, callback)
   self.interval_millisec = interval_millisec
   self.callback = callback

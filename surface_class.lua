@@ -167,7 +167,6 @@ function surface_class:copyfrom(src_surface, src_rectangle, dest_rectangle, blen
     love.graphics.setBlendMode("alpha")
   else
     love.graphics.setBlendMode("replace")
-    --love.graphics.setBlendMode('premultiplied')
   end
   
   love.graphics.setCanvas(self.canvas)
@@ -199,12 +198,7 @@ function surface_class:set_pixel(x, y, color)
 end
 
 function surface_class:premultiply()
-  -- Unsure exactly what this method does.
-  --love.graphics.setCanvas(self.canvas)
   love.graphics.setBlendMode('premultiplied')
-  --love.graphics.draw(self.canvas)
-  --love.graphics.setBlendMode('alpha')
-  --love.graphics.setCanvas()
 end
 
 function surface_class:destroy()

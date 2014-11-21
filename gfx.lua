@@ -103,6 +103,6 @@ end
 ----------------------
 
 gfx.auto_update = false
-gfx.memory_use = 0
+gfx.memory_use = 3686400
 
 return gfx

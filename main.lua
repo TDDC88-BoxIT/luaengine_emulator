@@ -1,3 +1,6 @@
+-- Change pack_to_run to the lua file you want to run in the emulator
+local package_to_run = 'game.game'
+
 require('surface_class')
 gfx = require('gfx')
 sys = require('sys')
@@ -7,8 +10,6 @@ sys = require('sys')
 ----------------------
 
 function love.load()
-  --print('love.load')
-  image = love.graphics.newImage("tv_picture.jpg")
   love.keyboard.setKeyRepeat(true)
   first_run = true
   
@@ -64,16 +65,12 @@ function love.load()
   key_translation["u"] = "mute"
   
   
-  require('game.game')
+  require(package_to_run)
   buffer_screen = screen
-  --require('scrum1.main')
-  --require('gameproject.main')
 end
 
 
 function love.draw()
-  --print('love.draw')
-  --love.graphics.draw(image)
   if first_run then
     if type(onStart) == "function" then
       print('Calling onStart')
@@ -85,9 +82,6 @@ function love.draw()
   if gfx.auto_update then
     --print('Auto draw')
     buffer_screen = screen
-    
-  --else
-  --  love.graphics.draw(gfx.buffer_screen)
   end
   love.graphics.draw(buffer_screen.canvas)
 end

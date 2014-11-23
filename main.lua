@@ -1,5 +1,5 @@
 -- Change pack_to_run to the lua file you want to run in the emulator
-local package_to_run = 'game.game'
+local package_to_run = arg[2]
 
 require('surface_class')
 gfx = require('gfx')
@@ -65,7 +65,7 @@ function love.load()
   key_translation["u"] = "mute"
   
   
-  require(package_to_run)
+  dofile(package_to_run)
   buffer_screen = screen
 end
 
